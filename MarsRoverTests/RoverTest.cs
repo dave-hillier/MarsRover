@@ -9,71 +9,71 @@ namespace MarsRoverTests
         [TestMethod]
         public void RotateLeftFromNorth()
         {
-            var rover = new Interpreter.Rover { Direction = Interpreter.Direction.N };
+            var rover = new Rover { Orientation = Rover.Direction.N };
             rover.RotateLeft();
-            Assert.AreEqual(Interpreter.Direction.W, rover.Direction);
+            Assert.AreEqual(Rover.Direction.W, rover.Orientation);
         }
 
         [TestMethod]
         public void RotateLeftFromWest()
         {
-            var rover = new Interpreter.Rover { Direction = Interpreter.Direction.W };
+            var rover = new Rover { Orientation = Rover.Direction.W };
             rover.RotateLeft();
-            Assert.AreEqual(Interpreter.Direction.S, rover.Direction);
+            Assert.AreEqual(Rover.Direction.S, rover.Orientation);
         }
 
         [TestMethod]
         public void RotateLeftFromSouth()
         {
-            var rover = new Interpreter.Rover { Direction = Interpreter.Direction.S };
+            var rover = new Rover { Orientation = Rover.Direction.S };
             rover.RotateLeft();
-            Assert.AreEqual(Interpreter.Direction.E, rover.Direction);
+            Assert.AreEqual(Rover.Direction.E, rover.Orientation);
         }
 
         [TestMethod]
         public void RotateLeftFromEast()
         {
-            var rover = new Interpreter.Rover { Direction = Interpreter.Direction.E };
+            var rover = new Rover { Orientation = Rover.Direction.E };
             rover.RotateLeft();
-            Assert.AreEqual(Interpreter.Direction.N, rover.Direction);
+            Assert.AreEqual(Rover.Direction.N, rover.Orientation);
         }
 
         [TestMethod]
         public void RotateRightFromNorth()
         {
-            var rover = new Interpreter.Rover { Direction = Interpreter.Direction.N };
+            var rover = new Rover { Orientation = Rover.Direction.N };
             rover.RotateRight();
-            Assert.AreEqual(Interpreter.Direction.E, rover.Direction);
+            Assert.AreEqual(Rover.Direction.E, rover.Orientation);
         }
 
         [TestMethod]
         public void RotateRightFromWest()
         {
-            var rover = new Interpreter.Rover { Direction = Interpreter.Direction.W };
+            var rover = new Rover { Orientation = Rover.Direction.W };
             rover.RotateRight();
-            Assert.AreEqual(Interpreter.Direction.N, rover.Direction);
+            Assert.AreEqual(Rover.Direction.N, rover.Orientation);
         }
 
         [TestMethod]
         public void RotateRightFromSouth()
         {
-            var rover = new Interpreter.Rover { Direction = Interpreter.Direction.S };
+            var rover = new Rover { Orientation = Rover.Direction.S };
             rover.RotateRight();
-            Assert.AreEqual(Interpreter.Direction.W, rover.Direction);
+            Assert.AreEqual(Rover.Direction.W, rover.Orientation);
         }
 
         [TestMethod]
         public void RotateRightFromEast()
         {
-            var rover = new Interpreter.Rover { Direction = Interpreter.Direction.E };
+            var rover = new Rover { Orientation = Rover.Direction.E };
             rover.RotateRight();
-            Assert.AreEqual(Interpreter.Direction.S, rover.Direction);
+            Assert.AreEqual(Rover.Direction.S, rover.Orientation);
         }
 
         [TestMethod]
         public void MoveNorth()
         {
-            var rover = new Interpreter.Rover { Direction = Interpreter.Direction.N };
+            var rover = new Rover { Orientation = Rover.Direction.N };
             rover.Move();
             Assert.AreEqual(0, rover.Position.X);
             Assert.AreEqual(1, rover.Position.Y);
@@ -82,7 +82,7 @@ namespace MarsRoverTests
         [TestMethod]
         public void MoveWest()
         {
-            var rover = new Interpreter.Rover { Direction = Interpreter.Direction.W };
+            var rover = new Rover { Orientation = Rover.Direction.W };
             rover.Move();
             Assert.AreEqual(-1, rover.Position.X);
             Assert.AreEqual(0, rover.Position.Y);
@@ -91,7 +91,7 @@ namespace MarsRoverTests
         [TestMethod]
         public void MoveEast()
         {
-            var rover = new Interpreter.Rover { Direction = Interpreter.Direction.E };
+            var rover = new Rover { Orientation = Rover.Direction.E };
             rover.Move();
             Assert.AreEqual(1, rover.Position.X);
             Assert.AreEqual(0, rover.Position.Y);
@@ -100,7 +100,7 @@ namespace MarsRoverTests
         [TestMethod]
         public void MoveSouth()
         {
-            var rover = new Interpreter.Rover { Direction = Interpreter.Direction.S };
+            var rover = new Rover { Orientation = Rover.Direction.S };
             rover.Move();
             Assert.AreEqual(0, rover.Position.X);
             Assert.AreEqual(-1, rover.Position.Y);

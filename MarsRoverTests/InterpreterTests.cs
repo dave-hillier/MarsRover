@@ -96,5 +96,22 @@ A
             var i = new Interpreter();
             i.Run(reader, writer);
         }
+
+
+        [TestMethod]
+        [ExpectedException(typeof(KeyNotFoundException))]
+        public void SecondInstructionIncorrect()
+        {
+            const string input = @"2 2
+0 0 N
+MA
+";
+            var reader = new StringReader(input);
+            var writer = new StringWriter();
+            var i = new Interpreter();
+            i.Run(reader, writer);
+        }
+
+
     }
 }
