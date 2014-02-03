@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using MarsRover;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Globalization;
 
 namespace MarsRoverTests
 {
@@ -24,6 +25,8 @@ MMRMMRMRRM
 
             var reader = new StringReader(input);
             var writer = new StringWriter();
+            writer.NewLine = @"
+";
             var i = new Interpreter();
             i.Run(reader, writer);
 

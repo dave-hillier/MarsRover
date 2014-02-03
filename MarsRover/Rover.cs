@@ -4,7 +4,12 @@ namespace MarsRover
 {
     internal struct Rover
     {
-        private static readonly Vector2[] Directions = new[] { new Vector2(0, 1), new Vector2(1, 0), new Vector2(0, -1), new Vector2(-1, 0) };
+        private static readonly Vector2[] Directions = new[] { 
+            new Vector2(0, 1), 
+            new Vector2(1, 0), 
+            new Vector2(0, -1), 
+            new Vector2(-1, 0) 
+        };
 
         public Vector2 Position;
         

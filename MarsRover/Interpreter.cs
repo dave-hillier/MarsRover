@@ -6,11 +6,21 @@ namespace MarsRover
 {
     public class Interpreter
     {
-        private readonly Commands _commands = new Commands();
+        private Vector2 _bounds;
+        private readonly Dictionary<char, Func<Rover, Rover>> _commandLookup;
+
+        public Interpreter()
+        {
+            _commandLookup = new Dictionary<char, Func<Rover, Rover>> {
+                    { 'M', Move },
+                    { 'L', r => { r.RotateLeft(); return r; } },
+                    { 'R', r => { r.RotateRight(); return r; } },
+                };
+        }
 
         public void Run(TextReader input, TextWriter output)
         {
-            _commands.Bounds = GetBounds(input.ReadLine());
+            _bounds = GetBoundary(input.ReadLine());
             string line;
             while ((line = input.ReadLine()) != null)
             {
@@ -24,7 +34,7 @@ namespace MarsRover
             }
         }
 
-        private Vector2 GetBounds(string line)
+        private static Vector2 GetBoundary(string line)
         {
             var @params = line.Split(' ');
             return new Vector2(Int32.Parse(@params[0]), Int32.Parse(@params[1]));
@@ -34,36 +44,23 @@ namespace MarsRover
         {
             foreach (var instruction in instructions)
             {
-                var cmd = _commands.GetCommand(instruction);
+                var cmd = GetCommand(instruction);
                 rover = cmd(rover);
             }
         }
 
-        private class Commands
+        private Func<Rover, Rover> GetCommand(char c)
         {
-            public Vector2 Bounds { private get; set; }
-            private readonly Dictionary<char, Func<Rover, Rover>> _commandMap;
-            public Commands()
-            {
-                _commandMap = new Dictionary<char, Func<Rover, Rover>> {
-                    { 'M', Move },
-                    { 'L', r => { r.RotateLeft(); return r; } },
-                    { 'R', r => { r.RotateRight(); return r; } },
-                };
-            }
+            return _commandLookup[c];
+        }
 
-            public Func<Rover, Rover> GetCommand(char c)
-            {
-                return _commandMap[c];
-            }
-
-            private Rover Move(Rover rover)
-            {
-                rover.Move();
-                if (rover.Position.X > Bounds.X || rover.Position.X < 0 || rover.Position.Y > Bounds.Y || rover.Position.Y < 0)
-                    throw new InvalidOperationException("Out of bounds");
-                return rover;
-            }
+        private Rover Move(Rover rover)
+        {
+            rover.Move();
+            if (rover.Position.X > _bounds.X || rover.Position.X < 0 || 
+                rover.Position.Y > _bounds.Y || rover.Position.Y < 0)
+                throw new InvalidOperationException("Out of bounds");
+            return rover;
         }
     }
 }
